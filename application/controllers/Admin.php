@@ -3397,6 +3397,78 @@ public function UpdateStock()
 		$this->load->view('admin/pesanan', $data);
 	}
 
+	public function kitchen()
+	{
+		if ($this->session->userdata('usernameadmin') == "" || 
+			!in_array($this->session->userdata('role'), ['admin', 'operation', 'kitchen'])) {
+			redirect('index.php/login/admin');
+		}
+
+		$data['cn'] = $this->Admin_model->getColorCN();
+		$data['ch'] = $this->Admin_model->getColorHD();
+		$data['cb'] = $this->Admin_model->getColorBTN();
+		$data['logo'] = $this->Admin_model->getLogo();
+		$data['kitchen_orders'] = $this->Admin_model->getKitchenOrders();
+
+		$this->load->view('admin/kitchen', $data);
+	}
+
+	public function get_kitchen_items()
+	{
+		if ($this->session->userdata('usernameadmin') == "" || 
+			!in_array($this->session->userdata('role'), ['admin', 'operation', 'kitchen'])) {
+			echo json_encode([]);
+			return;
+		}
+
+		$id_trans = $this->input->post('id_trans');
+		$items = $this->Admin_model->getKitchenOrderItems($id_trans);
+		echo json_encode($items);
+	}
+
+	public function update_kitchen_item_status()
+	{
+		if ($this->session->userdata('usernameadmin') == "" || 
+			!in_array($this->session->userdata('role'), ['admin', 'operation', 'kitchen'])) {
+			echo json_encode(['status' => 'error', 'message' => 'Unauthorized']);
+			return;
+		}
+
+		$item_id = $this->input->post('item_id');
+		$new_status = $this->input->post('status');
+
+		if (!$item_id || !$new_status) {
+			echo json_encode(['status' => 'error', 'message' => 'Data tidak lengkap']);
+			return;
+		}
+
+		$update = [];
+		switch (strtolower($new_status)) {
+			case 'in progress':
+			case 'proses':
+				$update['is_paid'] = 1;
+				$update['runner_by'] = $this->session->userdata('usernameadmin');
+				break;
+			case 'deliver':
+				$update['runner_by'] = $this->session->userdata('usernameadmin');
+				break;
+			case 'completed':
+				$update['end_time_order'] = date('Y-m-d H:i:s');
+				break;
+			default:
+				echo json_encode(['status' => 'error', 'message' => 'Status tidak dikenali']);
+				return;
+		}
+
+		$this->db->where('id', $item_id)->update('sh_t_transaction_details', $update);
+
+		if ($this->db->affected_rows() > 0) {
+			echo json_encode(['status' => 'success', 'message' => 'Status item berhasil diperbarui']);
+		} else {
+			echo json_encode(['status' => 'error', 'message' => 'Gagal memperbarui status item']);
+		}
+	}
+
 	public function update_status_pesanan()
 	{
 		if ($this->session->userdata('usernameadmin') == "" || 

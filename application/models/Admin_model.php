@@ -740,4 +740,41 @@ class Admin_model extends CI_model {
 		          WHERE d.id_trans = '".$this->db->escape_str($id_trans)."' AND d.is_cancel = 0";
 		return $this->db->query($query)->result();
 	}
+
+	public function getKitchenOrders()
+	{
+		$date = date('Y-m-d');
+		$query = "SELECT d.id_trans as id, 
+		                 MAX(d.selected_table_no) as table_number, 
+		                 MAX(c.customer_name) as customer_name, 
+		                 SUM(CASE WHEN d.is_cancel = 0 THEN d.qty ELSE 0 END) as total_items,
+		                 SUM(CASE WHEN d.is_cancel = 0 AND d.is_paid = 0 THEN d.qty ELSE 0 END) as awaiting_qty,
+		                 SUM(CASE WHEN d.is_cancel = 0 AND d.is_paid = 1 AND d.runner_by IS NULL AND d.end_time_order IS NULL THEN d.qty ELSE 0 END) as proses_qty,
+		                 SUM(CASE WHEN d.is_cancel = 0 AND d.runner_by IS NOT NULL AND d.end_time_order IS NULL THEN d.qty ELSE 0 END) as deliver_qty,
+		                 SUM(CASE WHEN d.is_cancel = 0 AND d.end_time_order IS NOT NULL THEN d.qty ELSE 0 END) as complete_qty
+		          FROM sh_t_transaction_details d
+		          JOIN sh_t_transactions t ON t.id = d.id_trans
+		          LEFT JOIN sh_m_customer c ON c.id = t.id_customer
+		          WHERE LEFT(d.created_date, 10) = '".$date."' AND d.is_cancel = 0
+		          GROUP BY d.id_trans
+		          ORDER BY d.id_trans DESC";
+		return $this->db->query($query)->result();
+	}
+
+	public function getKitchenOrderItems($id_trans)
+	{
+		$query = "SELECT d.id, d.item_code, d.qty, d.unit_price, d.extra_notes, d.is_paid, d.runner_by, d.end_time_order,
+	                         i.description as item_name, i.image_path,
+	                         CASE 
+	                            WHEN d.end_time_order IS NOT NULL THEN 'COMPLETED'
+	                            WHEN d.runner_by IS NOT NULL AND d.end_time_order IS NULL THEN 'DELIVERED'
+	                            WHEN d.is_paid = 1 THEN 'IN PROGRESS'
+	                            ELSE 'AWAITING'
+	                         END as item_status
+	                  FROM sh_t_transaction_details d
+	                  JOIN sh_m_item i ON i.no = d.item_code
+	                  WHERE d.id_trans = '".$this->db->escape_str($id_trans)."' AND d.is_cancel = 0
+	                  ORDER BY d.id ASC";
+		return $this->db->query($query)->result();
+	}
 }

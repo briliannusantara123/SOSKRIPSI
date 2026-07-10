@@ -825,7 +825,7 @@ class Login extends CI_Controller
 	    $password = $this->input->post('password');
 	    $this->db->where('username', $username);
 	    $user = $this->db->get('sh_user_so')->row();
-	    
+	    // var_dump($user);exit();
 	    if ($user) {
 	        if (md5($password) == $user->password) {
 	            $data = [
