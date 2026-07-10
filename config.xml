@@ -1,0 +1,1728 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfTaskConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <TaskConfig>
+    <ID>0</ID>
+    <OrderID>1</OrderID>
+    <Name>Example: Display message</Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Display a message</Type>
+        <Parameters>
+          <string>Thank you for using RoboIntern!
+
+If you notice bugs please leave a feedback at contact@robointern.tech.
+
+Happy automation! </string>
+          <string />
+          <string />
+          <string />
+          <string>true</string>
+          <string />
+        </Parameters>
+        <Status>Active</Status>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Status />
+        <Type>On time</Type>
+        <Parameters>
+          <string>Once</string>
+          <string>10:00:00</string>
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string>7/31/2028</string>
+          <string>1</string>
+        </Parameters>
+        <NextRun>7/31/2028 10:00:00 AM</NextRun>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>True</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>12/5/2024 12:00:00 AM</ActivationDateTime>
+    <Status>Active</Status>
+    <StatusMessage />
+    <LastRun>-</LastRun>
+    <NextRun>7/31/2028 10:00:00 AM</NextRun>
+    <LastModified>-</LastModified>
+    <ExecutionType>False</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+  <TaskConfig>
+    <ID>1</ID>
+    <OrderID>2</OrderID>
+    <Name>Example: Export Access to Excel</Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Transfer Access data to Excel file</Type>
+        <Parameters>
+          <string>C:\Users\HACHI\Documents\RoboIntern\examples\myAccessDB.accdb</string>
+          <string>SELECT * FROM tblCustomers</string>
+          <string />
+          <string>C:\Users\HACHI\Documents\RoboIntern\examples\myExcel.xlsx</string>
+          <string />
+          <string>AccessImport</string>
+          <string>C3</string>
+          <string>true</string>
+          <string>true</string>
+        </Parameters>
+        <Status>Done</Status>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Status />
+        <Type>File modified</Type>
+        <Parameters>
+          <string>C:\Users\HACHI\Documents\RoboIntern\examples\myTriggerFile.txt</string>
+          <string>6/1/2019</string>
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+        </Parameters>
+        <LastRun>08/06/2019 18:01:25</LastRun>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>True</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>12/5/2024 12:00:00 AM</ActivationDateTime>
+    <Status>Active</Status>
+    <StatusMessage />
+    <LastRun>-</LastRun>
+    <NextRun>On event trigger</NextRun>
+    <LastModified>-</LastModified>
+    <ExecutionType>False</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+  <TaskConfig>
+    <ID>2</ID>
+    <OrderID>3</OrderID>
+    <Name>Example: Copy - paste Excel </Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Copy-paste Excel data</Type>
+        <Parameters>
+          <string>C:\Users\HACHI\Documents\RoboIntern\examples\myExcel.xlsx</string>
+          <string>FixedData</string>
+          <string>D5:F27</string>
+          <string>C:\Users\HACHI\Documents\RoboIntern\examples\myOtherExcel.xlsx</string>
+          <string>CopiedData</string>
+          <string>A2</string>
+          <string>Copy</string>
+          <string>All</string>
+          <string>False</string>
+        </Parameters>
+        <Status>Active</Status>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Status />
+        <Type>On time</Type>
+        <Parameters>
+          <string>Daily</string>
+          <string>18:00:00</string>
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string>7/31/2028</string>
+          <string>1</string>
+        </Parameters>
+        <NextRun>7/31/2028 6:00:00 PM</NextRun>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>True</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>12/5/2024 12:00:00 AM</ActivationDateTime>
+    <Status>Active</Status>
+    <StatusMessage />
+    <LastRun>-</LastRun>
+    <NextRun>7/31/2028 6:00:00 PM</NextRun>
+    <LastModified>-</LastModified>
+    <ExecutionType>False</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+  <TaskConfig>
+    <ID>3</ID>
+    <OrderID>4</OrderID>
+    <Name>Example: Send database email</Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Send email with files, images or database data</Type>
+        <Parameters>
+          <string>Default Outlook account</string>
+          <string>example@example.com</string>
+          <string />
+          <string />
+          <string>My Database Email</string>
+          <string>Hello,
+
+Please find attached my database data:
+
+&lt;myDataTable&gt;
+
+Take care,
+RoboIntern</string>
+          <string>§Database data¢myAccessDB¢SELECT * FROM tblCustomers¢&lt;myDataTable&gt;</string>
+          <string>False</string>
+          <string />
+          <string />
+        </Parameters>
+        <Status>Active</Status>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Status />
+        <Type>On time</Type>
+        <Parameters>
+          <string>Daily</string>
+          <string>18:00:00</string>
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string>7/31/2028</string>
+          <string>1</string>
+        </Parameters>
+        <NextRun>7/31/2028 6:00:00 PM</NextRun>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>True</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>12/5/2024 12:00:00 AM</ActivationDateTime>
+    <Status>Active</Status>
+    <StatusMessage />
+    <LastRun>-</LastRun>
+    <NextRun>7/31/2028 6:00:00 PM</NextRun>
+    <LastModified>-</LastModified>
+    <ExecutionType>False</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+  <TaskConfig>
+    <ID>4</ID>
+    <OrderID>5</OrderID>
+    <Name>Example: Get email if file deleted</Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Send email with plain text</Type>
+        <Parameters>
+          <string>Default Outlook account</string>
+          <string>example@example.com</string>
+          <string />
+          <string />
+          <string>File just got deleted!</string>
+          <string>Hello,
+
+My file myTriggerFile.txt just got deleted!
+
+Take care,
+RoboIntern</string>
+          <string />
+          <string>False</string>
+          <string />
+          <string />
+        </Parameters>
+        <Status>Done</Status>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Status />
+        <Type>File deleted</Type>
+        <Parameters>
+          <string>C:\Users\HACHI\Documents\RoboIntern\examples\myTriggerFile.txt</string>
+          <string>6/1/2019</string>
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+        </Parameters>
+        <LastRun>3/24/2026 12:55:01 PM</LastRun>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>True</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>12/5/2024 12:00:00 AM</ActivationDateTime>
+    <Status>Active</Status>
+    <StatusMessage />
+    <LastRun>-</LastRun>
+    <NextRun>On event trigger</NextRun>
+    <LastModified>-</LastModified>
+    <ExecutionType>False</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+  <TaskConfig>
+    <ID>5</ID>
+    <OrderID>6</OrderID>
+    <Name>Example: Copy Excel chart to Word and PDF</Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Transfer Excel chart to Word</Type>
+        <Parameters>
+          <string>C:\Users\HACHI\Documents\RoboIntern\examples\myExcel.xlsx</string>
+          <string>RandomData</string>
+          <string>myChart</string>
+          <string>C:\Users\HACHI\Documents\RoboIntern\examples\myWordDoc.docx</string>
+          <string>&lt;myChartPlaceholder&gt;</string>
+          <string />
+        </Parameters>
+        <Status>Active</Status>
+      </Method>
+      <Method>
+        <Name />
+        <Type>Convert Word to PDF</Type>
+        <Parameters>
+          <string>C:\Users\HACHI\Documents\RoboIntern\examples\myWordDoc.docx</string>
+          <string>C:\Users\HACHI\Documents\RoboIntern\examples\myWordDocAsPDF.pdf</string>
+          <string>true</string>
+          <string />
+          <string />
+          <string />
+        </Parameters>
+        <Status>Active</Status>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Status />
+        <Type>On time</Type>
+        <Parameters>
+          <string>Weekly</string>
+          <string>18:00:00</string>
+          <string>Monday</string>
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string>7/31/2028</string>
+          <string>1</string>
+        </Parameters>
+        <NextRun>7/31/2028 6:00:00 PM</NextRun>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>True</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>12/5/2024 12:00:00 AM</ActivationDateTime>
+    <Status>Active</Status>
+    <StatusMessage />
+    <LastRun>-</LastRun>
+    <NextRun>7/31/2028 6:00:00 PM</NextRun>
+    <LastModified>-</LastModified>
+    <ExecutionType>True</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+  <TaskConfig>
+    <ID>6</ID>
+    <OrderID>7</OrderID>
+    <Name>Example: Handling of errors in other tasks</Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Display a message</Type>
+        <Parameters>
+          <string>To automate Access it looks like you either need to install the Access Database Engine (download from Microsoft website) or you need to use another version of RoboIntern (32bit or 64bit)!</string>
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+        </Parameters>
+        <Status>Active</Status>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Type>Another task error</Type>
+        <Parameters>
+          <string>1</string>
+          <string>6/16/2019</string>
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+        </Parameters>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>True</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>12/5/2024 12:00:00 AM</ActivationDateTime>
+    <Status>Active</Status>
+    <LastRun>-</LastRun>
+    <NextRun>On event trigger</NextRun>
+    <LastModified>-</LastModified>
+    <ExecutionType>True</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+  <TaskConfig>
+    <ID>7</ID>
+    <OrderID>7</OrderID>
+    <Name>Example: Dynamic variable I.</Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Send email with plain text</Type>
+        <Parameters>
+          <string>Default Outlook account</string>
+          <string>&lt;myEmailList&gt;</string>
+          <string />
+          <string />
+          <string>Dynamic variables in RoboIntern</string>
+          <string>Hello,
+
+The DL of this email was created from a dynamic variable.
+
+Happy automation,
+RoboIntern
+</string>
+          <string />
+          <string>False</string>
+          <string />
+          <string />
+        </Parameters>
+        <Status>Active</Status>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Type>No trigger</Type>
+        <Parameters>
+          <string />
+        </Parameters>
+        <NextRun>12/31/9997 12:00:00 AM</NextRun>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>False</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>02/06/2022 00:00:00</ActivationDateTime>
+    <Status>Active</Status>
+    <StatusMessage>-</StatusMessage>
+    <LastRun>-</LastRun>
+    <NextRun>-</NextRun>
+    <LastModified>Pista on 02/06/2022 22:28:47</LastModified>
+    <ExecutionType>True</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+  <TaskConfig>
+    <ID>8</ID>
+    <OrderID>8</OrderID>
+    <Name>Example: Dynamic variable II.</Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Display a message</Type>
+        <Parameters>
+          <string>The current month is: &lt;currentMonth&gt;</string>
+          <string>false</string>
+          <string />
+          <string />
+          <string />
+          <string />
+        </Parameters>
+        <Status>Done</Status>
+        <StatusMessage>-</StatusMessage>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Type>No trigger</Type>
+        <Parameters>
+          <string />
+        </Parameters>
+        <NextRun>12/31/9997 12:00:00 AM</NextRun>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>False</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>02/06/2022 00:00:00</ActivationDateTime>
+    <Status>Active</Status>
+    <StatusMessage>-</StatusMessage>
+    <LastRun>-</LastRun>
+    <NextRun>-</NextRun>
+    <LastModified>Pista on 02/06/2022 22:23:56</LastModified>
+    <ExecutionType>True</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+  <TaskConfig>
+    <ID>9</ID>
+    <OrderID>10</OrderID>
+    <Name>Backup RoboIntern configs</Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Backup task configs</Type>
+        <Parameters>
+          <string>Copy</string>
+          <string />
+          <string>="C:\Users\HACHI\Documents\RoboIntern\backups\ConfigBackup_" &amp; TEXT(TODAY(),"yyyymmdd")</string>
+          <string>true</string>
+          <string />
+          <string />
+        </Parameters>
+        <Status>Done</Status>
+        <StatusMessage>-</StatusMessage>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Status />
+        <Type>On time</Type>
+        <Parameters>
+          <string>Daily</string>
+          <string>11:00:00</string>
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string>5/4/2022</string>
+          <string>1</string>
+        </Parameters>
+        <NextRun>3/25/2026 11:00:00 AM</NextRun>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>False</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>04/05/2022 00:00:00</ActivationDateTime>
+    <Status>Active</Status>
+    <StatusMessage />
+    <LastRun>3/24/2026 11:00:00 AM</LastRun>
+    <NextRun>3/25/2026 11:00:00 AM</NextRun>
+    <LastModified>Pista on 04/05/2022 21:58:51</LastModified>
+    <ExecutionType>True</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+  <TaskConfig>
+    <ID>10</ID>
+    <OrderID>11</OrderID>
+    <Name>BackupDB</Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Run a program</Type>
+        <Parameters>
+          <string>D:\wamp\bin\mysql\mysql5.6.17\bin\backupdb.bat</string>
+          <string />
+          <string />
+          <string />
+          <string />
+        </Parameters>
+        <Status>Done</Status>
+        <StatusMessage>-</StatusMessage>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Status />
+        <Type>On time</Type>
+        <Parameters>
+          <string>Daily</string>
+          <string>22:00:00</string>
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string>12/5/2024</string>
+          <string>1</string>
+        </Parameters>
+        <NextRun>3/24/2026 10:00:00 PM</NextRun>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>False</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>12/5/2024 12:00:00 AM</ActivationDateTime>
+    <Status>Active</Status>
+    <StatusMessage />
+    <LastRun>3/23/2026 10:00:00 PM</LastRun>
+    <NextRun>3/24/2026 10:00:00 PM</NextRun>
+    <LastModified>HACHI on 12/5/2024 6:50:27 AM</LastModified>
+    <ExecutionType>True</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+  <TaskConfig>
+    <ID>11</ID>
+    <OrderID>12</OrderID>
+    <Name>KompresDB</Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Run a program</Type>
+        <Parameters>
+          <string>D:\wamp\www\autobackuparsip\arsip\kompres.bat</string>
+          <string />
+          <string />
+          <string />
+          <string />
+        </Parameters>
+        <Status>Done</Status>
+        <StatusMessage>-</StatusMessage>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Status />
+        <Type>On time</Type>
+        <Parameters>
+          <string>Daily</string>
+          <string>22:10:00</string>
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string>12/5/2024</string>
+          <string>1</string>
+        </Parameters>
+        <NextRun>3/24/2026 10:10:00 PM</NextRun>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>False</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>12/5/2024 12:00:00 AM</ActivationDateTime>
+    <Status>Active</Status>
+    <StatusMessage />
+    <LastRun>3/23/2026 10:10:00 PM</LastRun>
+    <NextRun>3/24/2026 10:10:00 PM</NextRun>
+    <LastModified>HACHI on 12/5/2024 6:52:12 AM</LastModified>
+    <ExecutionType>True</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+  <TaskConfig>
+    <ID>12</ID>
+    <OrderID>13</OrderID>
+    <Name>HapusDB</Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Run a program</Type>
+        <Parameters>
+          <string>D:\wamp\www\autobackuparsip\hapusfile\hapus.bat</string>
+          <string />
+          <string />
+          <string />
+          <string />
+        </Parameters>
+        <Status>Done</Status>
+        <StatusMessage>-</StatusMessage>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Status />
+        <Type>On time</Type>
+        <Parameters>
+          <string>Daily</string>
+          <string>22:15:00</string>
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string>12/5/2024</string>
+          <string>1</string>
+        </Parameters>
+        <NextRun>3/24/2026 10:15:00 PM</NextRun>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>False</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>12/5/2024 12:00:00 AM</ActivationDateTime>
+    <Status>Active</Status>
+    <StatusMessage />
+    <LastRun>3/23/2026 10:15:00 PM</LastRun>
+    <NextRun>3/24/2026 10:15:00 PM</NextRun>
+    <LastModified>HACHI on 12/5/2024 6:52:58 AM</LastModified>
+    <ExecutionType>True</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+  <TaskConfig>
+    <ID>13</ID>
+    <OrderID>14</OrderID>
+    <Name>UploadDBFTP</Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Run a program</Type>
+        <Parameters>
+          <string>D:\wamp\www\autobackuparsip\uploadftp.bat</string>
+          <string />
+          <string />
+          <string />
+          <string />
+        </Parameters>
+        <Status>Done</Status>
+        <StatusMessage>-</StatusMessage>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Status />
+        <Type>On time</Type>
+        <Parameters>
+          <string>Daily</string>
+          <string>22:15:00</string>
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string>12/5/2024</string>
+          <string>1</string>
+        </Parameters>
+        <NextRun>3/24/2026 10:15:00 PM</NextRun>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>False</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>12/5/2024 12:00:00 AM</ActivationDateTime>
+    <Status>Active</Status>
+    <StatusMessage />
+    <LastRun>3/23/2026 10:15:00 PM</LastRun>
+    <NextRun>3/24/2026 10:15:00 PM</NextRun>
+    <LastModified>HACHI on 12/5/2024 6:54:46 AM</LastModified>
+    <ExecutionType>True</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+  <TaskConfig>
+    <ID>14</ID>
+    <OrderID>15</OrderID>
+    <Name>HapusKompresDB</Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Run a program</Type>
+        <Parameters>
+          <string>D:\wamp\www\autobackuparsip\hapusfile\hapus_arsip.bat</string>
+          <string />
+          <string />
+          <string />
+          <string />
+        </Parameters>
+        <Status>Done</Status>
+        <StatusMessage>-</StatusMessage>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Status />
+        <Type>On time</Type>
+        <Parameters>
+          <string>Daily</string>
+          <string>22:20:00</string>
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string>12/5/2024</string>
+          <string>1</string>
+        </Parameters>
+        <NextRun>3/24/2026 10:20:00 PM</NextRun>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>False</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>12/5/2024 12:00:00 AM</ActivationDateTime>
+    <Status>Active</Status>
+    <StatusMessage />
+    <LastRun>3/23/2026 10:20:00 PM</LastRun>
+    <NextRun>3/24/2026 10:20:00 PM</NextRun>
+    <LastModified>HACHI on 12/5/2024 6:56:09 AM</LastModified>
+    <ExecutionType>True</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+  <TaskConfig>
+    <ID>15</ID>
+    <OrderID>16</OrderID>
+    <Name>Relogin</Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Run a program</Type>
+        <Parameters>
+          <string>D:\wamp\www\scheduller\relogin.bat</string>
+          <string />
+          <string />
+          <string />
+          <string />
+        </Parameters>
+        <Status>Done</Status>
+        <StatusMessage>-</StatusMessage>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Status />
+        <Type>On time</Type>
+        <Parameters>
+          <string>Daily</string>
+          <string>07:00:00</string>
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string>12/5/2024</string>
+          <string>1</string>
+        </Parameters>
+        <NextRun>3/25/2026 7:00:00 AM</NextRun>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>False</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>12/5/2024 12:00:00 AM</ActivationDateTime>
+    <Status>Active</Status>
+    <StatusMessage />
+    <LastRun>3/24/2026 7:00:00 AM</LastRun>
+    <NextRun>3/25/2026 7:00:00 AM</NextRun>
+    <LastModified>HACHI on 12/5/2024 7:19:04 AM</LastModified>
+    <ExecutionType>True</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+  <TaskConfig>
+    <ID>16</ID>
+    <OrderID>17</OrderID>
+    <Name>Get</Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Run a program</Type>
+        <Parameters>
+          <string>D:\wamp\www\scheduller\get.bat</string>
+          <string />
+          <string />
+          <string />
+          <string />
+        </Parameters>
+        <Status>Done</Status>
+        <StatusMessage>-</StatusMessage>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Status />
+        <Type>On time</Type>
+        <Parameters>
+          <string>High frequency</string>
+          <string>07:25:00</string>
+          <string>Monday,Friday,Tuesday,Saturday,Wednesday,Sunday,Thursday</string>
+          <string>0</string>
+          <string>24</string>
+          <string />
+          <string>10</string>
+          <string>minute</string>
+          <string />
+          <string>12/5/2024</string>
+          <string>1</string>
+        </Parameters>
+        <NextRun>3/24/2026 1:05:00 PM</NextRun>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>False</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>12/5/2024 12:00:00 AM</ActivationDateTime>
+    <Status>Active</Status>
+    <StatusMessage>-</StatusMessage>
+    <LastRun>3/24/2026 12:55:00 PM</LastRun>
+    <NextRun>3/24/2026 1:05:00 PM</NextRun>
+    <LastModified>Administrator on 11/30/2025 11:21:04 PM</LastModified>
+    <ExecutionType>True</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+  <TaskConfig>
+    <ID>17</ID>
+    <OrderID>18</OrderID>
+    <Name>Recheck</Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Run a program</Type>
+        <Parameters>
+          <string>D:\wamp\www\scheduller\recheck.bat</string>
+          <string />
+          <string />
+          <string />
+          <string />
+        </Parameters>
+        <Status>Done</Status>
+        <StatusMessage>-</StatusMessage>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Status />
+        <Type>On time</Type>
+        <Parameters>
+          <string>High frequency</string>
+          <string>07:25:00</string>
+          <string>Monday,Friday,Tuesday,Saturday,Wednesday,Sunday,Thursday</string>
+          <string>0</string>
+          <string>24</string>
+          <string />
+          <string>12</string>
+          <string>minute</string>
+          <string />
+          <string>12/5/2024</string>
+          <string>1</string>
+        </Parameters>
+        <NextRun>3/24/2026 1:01:00 PM</NextRun>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>False</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>12/5/2024 12:00:00 AM</ActivationDateTime>
+    <Status>Active</Status>
+    <StatusMessage>-</StatusMessage>
+    <LastRun>3/24/2026 12:49:00 PM</LastRun>
+    <NextRun>3/24/2026 1:01:00 PM</NextRun>
+    <LastModified>Administrator on 11/30/2025 11:21:27 PM</LastModified>
+    <ExecutionType>True</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+  <TaskConfig>
+    <ID>18</ID>
+    <OrderID>19</OrderID>
+    <Name>Autogeneratemembership</Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Run a program</Type>
+        <Parameters>
+          <string>D:\wamp\www\scheduller\autogeneratemembership.bat</string>
+          <string />
+          <string />
+          <string />
+          <string />
+        </Parameters>
+        <Status>Done</Status>
+        <StatusMessage>-</StatusMessage>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Status />
+        <Type>On time</Type>
+        <Parameters>
+          <string>Monthly</string>
+          <string>07:26:00</string>
+          <string />
+          <string />
+          <string>1</string>
+          <string>day</string>
+          <string />
+          <string />
+          <string />
+          <string>12/5/2024</string>
+          <string>1</string>
+        </Parameters>
+        <NextRun>4/1/2026 7:26:00 AM</NextRun>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>False</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>12/5/2024 12:00:00 AM</ActivationDateTime>
+    <Status>Active</Status>
+    <StatusMessage />
+    <LastRun>3/1/2026 7:26:00 AM</LastRun>
+    <NextRun>4/1/2026 7:26:00 AM</NextRun>
+    <LastModified>HACHI on 12/5/2024 7:29:13 AM</LastModified>
+    <ExecutionType>True</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+  <TaskConfig>
+    <ID>19</ID>
+    <OrderID>20</OrderID>
+    <Name>ExportXLS</Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Run a program</Type>
+        <Parameters>
+          <string>D:\wamp\www\exportxls\exportsales.bat</string>
+          <string />
+          <string />
+          <string />
+          <string />
+        </Parameters>
+        <Status>Done</Status>
+        <StatusMessage>-</StatusMessage>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Status />
+        <Type>On time</Type>
+        <Parameters>
+          <string>Daily</string>
+          <string>22:30:00</string>
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string>12/5/2024</string>
+          <string>1</string>
+        </Parameters>
+        <NextRun>3/24/2026 10:30:00 PM</NextRun>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>False</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>12/5/2024 12:00:00 AM</ActivationDateTime>
+    <Status>Active</Status>
+    <StatusMessage />
+    <LastRun>3/23/2026 10:30:00 PM</LastRun>
+    <NextRun>3/24/2026 10:30:00 PM</NextRun>
+    <LastModified>HACHI on 12/5/2024 7:44:07 AM</LastModified>
+    <ExecutionType>True</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+  <TaskConfig>
+    <ID>20</ID>
+    <OrderID>21</OrderID>
+    <Name>XlsFTP</Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Run a program</Type>
+        <Parameters>
+          <string>D:\wamp\www\exportxls\uploadftp.bat</string>
+          <string />
+          <string />
+          <string />
+          <string />
+        </Parameters>
+        <Status>Done</Status>
+        <StatusMessage>-</StatusMessage>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Status />
+        <Type>On time</Type>
+        <Parameters>
+          <string>Daily</string>
+          <string>22:43:00</string>
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string>12/5/2024</string>
+          <string>1</string>
+        </Parameters>
+        <NextRun>3/24/2026 10:43:00 PM</NextRun>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>False</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>12/5/2024 12:00:00 AM</ActivationDateTime>
+    <Status>Active</Status>
+    <StatusMessage />
+    <LastRun>3/23/2026 10:43:00 PM</LastRun>
+    <NextRun>3/24/2026 10:43:00 PM</NextRun>
+    <LastModified>HACHI on 12/5/2024 7:44:48 AM</LastModified>
+    <ExecutionType>True</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+  <TaskConfig>
+    <ID>21</ID>
+    <OrderID>22</OrderID>
+    <Name>OmzetXls</Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Run a program</Type>
+        <Parameters>
+          <string>D:\wamp\www\KirimMail\ReportOmzet\ExportXls.bat</string>
+          <string />
+          <string />
+          <string />
+          <string />
+        </Parameters>
+        <Status>Error</Status>
+        <StatusMessage>The system cannot find the file specified</StatusMessage>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Status />
+        <Type>On time</Type>
+        <Parameters>
+          <string>Daily</string>
+          <string>23:00:00</string>
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string>12/5/2024</string>
+          <string>1</string>
+        </Parameters>
+        <NextRun>3/24/2026 11:00:00 PM</NextRun>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>False</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>12/5/2024 12:00:00 AM</ActivationDateTime>
+    <Status>Error</Status>
+    <StatusMessage />
+    <LastRun>3/23/2026 11:00:00 PM</LastRun>
+    <NextRun>3/24/2026 11:00:00 PM</NextRun>
+    <LastModified>HACHI on 12/5/2024 8:34:08 AM</LastModified>
+    <ExecutionType>True</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+  <TaskConfig>
+    <ID>22</ID>
+    <OrderID>23</OrderID>
+    <Name>CompareXls</Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Run a program</Type>
+        <Parameters>
+          <string>D:\wamp\www\KirimMail\ReportOmzet\ExportXlsCompare.bat</string>
+          <string />
+          <string />
+          <string />
+          <string />
+        </Parameters>
+        <Status>Error</Status>
+        <StatusMessage>The system cannot find the file specified</StatusMessage>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Status />
+        <Type>On time</Type>
+        <Parameters>
+          <string>Daily</string>
+          <string>23:05:00</string>
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string>12/5/2024</string>
+          <string>1</string>
+        </Parameters>
+        <NextRun>3/24/2026 11:05:00 PM</NextRun>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>False</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>12/5/2024 12:00:00 AM</ActivationDateTime>
+    <Status>Error</Status>
+    <StatusMessage />
+    <LastRun>3/23/2026 11:05:00 PM</LastRun>
+    <NextRun>3/24/2026 11:05:00 PM</NextRun>
+    <LastModified>HACHI on 12/5/2024 8:34:37 AM</LastModified>
+    <ExecutionType>True</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+  <TaskConfig>
+    <ID>23</ID>
+    <OrderID>24</OrderID>
+    <Name>OmzetMail</Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Run a program</Type>
+        <Parameters>
+          <string>D:\wamp\www\KirimMail\ReportOmzet\KirimMail.bat</string>
+          <string />
+          <string />
+          <string />
+          <string />
+        </Parameters>
+        <Status>Error</Status>
+        <StatusMessage>The system cannot find the file specified</StatusMessage>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Status />
+        <Type>On time</Type>
+        <Parameters>
+          <string>Daily</string>
+          <string>23:10:00</string>
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string>12/5/2024</string>
+          <string>1</string>
+        </Parameters>
+        <NextRun>11/24/2025 11:10:00 PM</NextRun>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>False</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>12/5/2024 12:00:00 AM</ActivationDateTime>
+    <Status>Inactive</Status>
+    <StatusMessage>-</StatusMessage>
+    <LastRun>11/22/2025 11:10:00 PM</LastRun>
+    <NextRun>-</NextRun>
+    <LastModified>Administrator on 11/24/2025 9:03:32 AM</LastModified>
+    <ExecutionType>True</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+  <TaskConfig>
+    <ID>24</ID>
+    <OrderID>25</OrderID>
+    <Name>LogXls</Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Run a program</Type>
+        <Parameters>
+          <string>D:\wamp\www\KirimMail\ReportLog\LogXls.bat</string>
+          <string />
+          <string />
+          <string />
+          <string />
+        </Parameters>
+        <Status>Error</Status>
+        <StatusMessage>The system cannot find the file specified</StatusMessage>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Status />
+        <Type>On time</Type>
+        <Parameters>
+          <string>Daily</string>
+          <string>22:00:00</string>
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string>12/5/2024</string>
+          <string>1</string>
+        </Parameters>
+        <NextRun>3/24/2026 10:00:00 PM</NextRun>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>False</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>12/5/2024 12:00:00 AM</ActivationDateTime>
+    <Status>Error</Status>
+    <StatusMessage />
+    <LastRun>3/23/2026 10:00:00 PM</LastRun>
+    <NextRun>3/24/2026 10:00:00 PM</NextRun>
+    <LastModified>HACHI on 12/5/2024 9:22:56 AM</LastModified>
+    <ExecutionType>True</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+  <TaskConfig>
+    <ID>25</ID>
+    <OrderID>26</OrderID>
+    <Name>LogMail</Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Run a program</Type>
+        <Parameters>
+          <string>D:\wamp\www\KirimMail\ReportLog\LogMail.bat</string>
+          <string />
+          <string />
+          <string />
+          <string />
+        </Parameters>
+        <Status>Error</Status>
+        <StatusMessage>The system cannot find the file specified</StatusMessage>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Status />
+        <Type>On time</Type>
+        <Parameters>
+          <string>Daily</string>
+          <string>22:05:00</string>
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string>12/5/2024</string>
+          <string>1</string>
+        </Parameters>
+        <NextRun>11/24/2025 10:05:00 PM</NextRun>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>False</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>12/5/2024 12:00:00 AM</ActivationDateTime>
+    <Status>Inactive</Status>
+    <StatusMessage>-</StatusMessage>
+    <LastRun>11/22/2025 10:05:00 PM</LastRun>
+    <NextRun>-</NextRun>
+    <LastModified>Administrator on 11/24/2025 9:03:38 AM</LastModified>
+    <ExecutionType>True</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+  <TaskConfig>
+    <ID>26</ID>
+    <OrderID>27</OrderID>
+    <Name>ExportWMS</Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Run a program</Type>
+        <Parameters>
+          <string>D:\wamp\www\exportxls\WMS\exportsales.bat</string>
+          <string />
+          <string />
+          <string />
+          <string />
+        </Parameters>
+        <Status>Done</Status>
+        <StatusMessage>-</StatusMessage>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Status />
+        <Type>On time</Type>
+        <Parameters>
+          <string>Daily</string>
+          <string>22:00:00</string>
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string>3/7/2026</string>
+          <string>1</string>
+        </Parameters>
+        <NextRun>3/24/2026 10:00:00 PM</NextRun>
+      </Trigger>
+      <Trigger>
+        <Status />
+        <Type>On time</Type>
+        <Parameters>
+          <string>Daily</string>
+          <string>23:00:00</string>
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string>3/7/2026</string>
+          <string>1</string>
+        </Parameters>
+        <NextRun>3/24/2026 11:00:00 PM</NextRun>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>False</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>12/16/2024 12:00:00 AM</ActivationDateTime>
+    <Status>Active</Status>
+    <StatusMessage />
+    <LastRun>3/23/2026 11:00:00 PM</LastRun>
+    <NextRun>3/24/2026 10:00:00 PM</NextRun>
+    <LastModified>Administrator on 3/7/2026 9:38:06 AM</LastModified>
+    <ExecutionType>True</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+  <TaskConfig>
+    <ID>27</ID>
+    <OrderID>28</OrderID>
+    <Name>WMSFtp1</Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Run a program</Type>
+        <Parameters>
+          <string>D:\wamp\www\exportxls\WMS\uploadftp.bat</string>
+          <string />
+          <string />
+          <string />
+          <string />
+        </Parameters>
+        <Status>Done</Status>
+        <StatusMessage>-</StatusMessage>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Status />
+        <Type>On time</Type>
+        <Parameters>
+          <string>High frequency</string>
+          <string>10:21:00</string>
+          <string>Monday,Friday,Tuesday,Saturday,Sunday,Thursday,Wednesday</string>
+          <string>23</string>
+          <string>24</string>
+          <string />
+          <string>2</string>
+          <string>minute</string>
+          <string />
+          <string>3/2/2026</string>
+          <string>1</string>
+        </Parameters>
+        <NextRun>3/24/2026 11:01:00 PM</NextRun>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>False</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>12/16/2024 12:00:00 AM</ActivationDateTime>
+    <Status>Active</Status>
+    <StatusMessage />
+    <LastRun>3/24/2026 12:01:00 AM</LastRun>
+    <NextRun>3/24/2026 11:01:00 PM</NextRun>
+    <LastModified>Administrator on 3/5/2026 11:44:33 AM</LastModified>
+    <ExecutionType>True</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+  <TaskConfig>
+    <ID>28</ID>
+    <OrderID>30</OrderID>
+    <Name>CallWaitress</Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Run a program</Type>
+        <Parameters>
+          <string>D:\wamp\www\so\panggil_waitress.bat</string>
+          <string />
+          <string />
+          <string />
+          <string />
+        </Parameters>
+        <Status>Done</Status>
+        <StatusMessage>-</StatusMessage>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Status />
+        <Type>On time</Type>
+        <Parameters>
+          <string>High frequency</string>
+          <string>08:43:00</string>
+          <string>Monday,Friday,Tuesday,Saturday,Wednesday,Sunday,Thursday</string>
+          <string>0</string>
+          <string>24</string>
+          <string />
+          <string>5</string>
+          <string>hour</string>
+          <string />
+          <string>02/13/2025</string>
+          <string>1</string>
+        </Parameters>
+        <NextRun>12/30/2025 11:43:00 PM</NextRun>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>False</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>2/13/2025 12:00:00 AM</ActivationDateTime>
+    <Status>Inactive</Status>
+    <StatusMessage>-</StatusMessage>
+    <LastRun>12/30/2025 6:43:00 PM</LastRun>
+    <NextRun>-</NextRun>
+    <LastModified>Administrator on 12/30/2025 7:25:38 PM</LastModified>
+    <ExecutionType>True</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+  <TaskConfig>
+    <ID>29</ID>
+    <OrderID>31</OrderID>
+    <Name>AutoClose</Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Run a program</Type>
+        <Parameters>
+          <string>D:\wamp\www\closetab.bat</string>
+          <string />
+          <string />
+          <string />
+          <string />
+        </Parameters>
+        <Status>Error</Status>
+        <StatusMessage>The system cannot find the file specified</StatusMessage>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Status />
+        <Type>On time</Type>
+        <Parameters>
+          <string>Daily</string>
+          <string>08:00:00</string>
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string />
+          <string>06/30/2025</string>
+          <string>1</string>
+        </Parameters>
+        <NextRun>3/25/2026 8:00:00 AM</NextRun>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>False</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>06/30/2025 12:00:00 AM</ActivationDateTime>
+    <Status>Error</Status>
+    <StatusMessage />
+    <LastRun>3/24/2026 8:00:00 AM</LastRun>
+    <NextRun>3/25/2026 8:00:00 AM</NextRun>
+    <LastModified>HACHI on 06/30/2025 02:32:14 PM</LastModified>
+    <ExecutionType>True</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+  <TaskConfig>
+    <ID>30</ID>
+    <OrderID>32</OrderID>
+    <Name>GetDelivery</Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Run a program</Type>
+        <Parameters>
+          <string>D:\wamp\www\scheduller\getDelivery.bat</string>
+          <string />
+          <string />
+          <string />
+          <string />
+        </Parameters>
+        <Status>Done</Status>
+        <StatusMessage>-</StatusMessage>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Status />
+        <Type>On time</Type>
+        <Parameters>
+          <string>High frequency</string>
+          <string>12:52:00</string>
+          <string>Monday,Friday,Tuesday,Saturday,Wednesday,Sunday,Thursday</string>
+          <string>0</string>
+          <string>24</string>
+          <string />
+          <string>1</string>
+          <string>minute</string>
+          <string />
+          <string>12/22/2025</string>
+          <string>1</string>
+        </Parameters>
+        <NextRun>12/30/2025 7:20:00 PM</NextRun>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>False</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>12/22/2025 12:00:00 AM</ActivationDateTime>
+    <Status>Inactive</Status>
+    <StatusMessage>-</StatusMessage>
+    <LastRun>12/30/2025 7:19:00 PM</LastRun>
+    <NextRun>-</NextRun>
+    <LastModified>Administrator on 12/30/2025 7:19:55 PM</LastModified>
+    <ExecutionType>True</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+  <TaskConfig>
+    <ID>31</ID>
+    <OrderID>33</OrderID>
+    <Name>UpdateStockDelivery</Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Run a program</Type>
+        <Parameters>
+          <string>D:\wamp\www\scheduller\updateStockDelivery.bat</string>
+          <string />
+          <string />
+          <string />
+          <string />
+        </Parameters>
+        <Status>Done</Status>
+        <StatusMessage>-</StatusMessage>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Status />
+        <Type>On time</Type>
+        <Parameters>
+          <string>High frequency</string>
+          <string>12:53:00</string>
+          <string>Monday,Friday,Tuesday,Saturday,Wednesday,Sunday,Thursday</string>
+          <string>0</string>
+          <string>24</string>
+          <string />
+          <string>2</string>
+          <string>minute</string>
+          <string />
+          <string>12/22/2025</string>
+          <string>1</string>
+        </Parameters>
+        <NextRun>12/30/2025 7:21:00 PM</NextRun>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>False</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>12/22/2025 12:00:00 AM</ActivationDateTime>
+    <Status>Inactive</Status>
+    <StatusMessage>-</StatusMessage>
+    <LastRun>12/30/2025 7:19:00 PM</LastRun>
+    <NextRun>-</NextRun>
+    <LastModified>Administrator on 12/30/2025 7:20:14 PM</LastModified>
+    <ExecutionType>True</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+  <TaskConfig>
+    <ID>32</ID>
+    <OrderID>29</OrderID>
+    <Name>WMSFtp2</Name>
+    <Methods>
+      <Method>
+        <Name />
+        <Type>Run a program</Type>
+        <Parameters>
+          <string>D:\wamp\www\exportxls\WMS\uploadftp.bat</string>
+          <string />
+          <string />
+          <string />
+          <string />
+        </Parameters>
+        <Status>Done</Status>
+        <StatusMessage>-</StatusMessage>
+      </Method>
+    </Methods>
+    <Triggers>
+      <Trigger>
+        <Status />
+        <Type>On time</Type>
+        <Parameters>
+          <string>High frequency</string>
+          <string>11:43:00</string>
+          <string>Monday,Friday,Saturday,Tuesday,Wednesday,Sunday,Thursday</string>
+          <string>0</string>
+          <string>2</string>
+          <string />
+          <string>2</string>
+          <string>minute</string>
+          <string />
+          <string>3/5/2026</string>
+          <string>1</string>
+        </Parameters>
+        <NextRun>3/25/2026 12:01:00 AM</NextRun>
+      </Trigger>
+    </Triggers>
+    <TriggerConditions>False</TriggerConditions>
+    <DeactivateOnError>False</DeactivateOnError>
+    <ExpiryDateTime />
+    <ActivationDateTime>3/5/2026 12:00:00 AM</ActivationDateTime>
+    <Status>Active</Status>
+    <StatusMessage />
+    <LastRun>3/24/2026 3:01:00 AM</LastRun>
+    <NextRun>3/25/2026 12:01:00 AM</NextRun>
+    <LastModified>Administrator on 3/5/2026 11:45:24 AM</LastModified>
+    <ExecutionType>True</ExecutionType>
+    <DelayActionsAfterTriggerFire>0</DelayActionsAfterTriggerFire>
+  </TaskConfig>
+</ArrayOfTaskConfig>
