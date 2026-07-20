@@ -3264,7 +3264,7 @@ public function get_cart_summary()
 	           INTENT DETECTION
 	        ========================= */
 	        $intent = $this->detectIntent($message);
-
+			
 	        /* =========================
 	           CATEGORY DETECTION
 	        ========================= */
@@ -3384,7 +3384,7 @@ public function get_cart_summary()
 	            case 'info':
 
 	                $keyword = $this->extractKeyword($message);
-
+					
 	                $words = explode(' ', $keyword);
 
 	                $this->db->group_start();
@@ -3661,47 +3661,60 @@ public function get_cart_summary()
 	}
 	private function askGemini($message)
 	{
-	    $apiKey = "AIzaSyAyusqYMelYdrNYRuU58DW1K-cMxTRblCQ";
+		// Gunakan model gemini-1.5-flash sesuai URL cURL Anda yang valid
+		$url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
 
-	    $url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=" . $apiKey;
+		// PENTING: Jika token AQ.Ab8RN... ini expired, ganti dengan API Key resmi yang diawali "AIzaSy..." dari Google AI Studio
+		$apiKey = "Ab8RN6KtMIG81ysF1sjbaHvNT0pR4nOwBBWFuPv_v8qGNmWwQA";
 
-	    $data = [
-	        "contents" => [
-	            [
-	                "parts" => [
-	                    ["text" => $message]
-	                ]
-	            ]
-	        ]
-	    ];
+		$data = [
+			"contents" => [
+				[
+					"parts" => [
+						["text" => (string)$message]
+					]
+				]
+			]
+		];
 
-	    $ch = curl_init($url);
+		$ch = curl_init($url);
 
-	    curl_setopt_array($ch, [
-	        CURLOPT_RETURNTRANSFER => true,
-	        CURLOPT_POST => true,
-	        CURLOPT_HTTPHEADER => ["Content-Type: application/json"],
-	        CURLOPT_POSTFIELDS => json_encode($data),
-	        CURLOPT_TIMEOUT => 10,
-	        CURLOPT_SSL_VERIFYPEER => false,
-	        CURLOPT_SSL_VERIFYHOST => false
-	    ]);
+		curl_setopt_array($ch, [
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_POST => true,
+			CURLOPT_HTTPHEADER => [
+				"Content-Type: application/json",
+				"X-goog-api-key: " . $apiKey // PERBAIKAN: Mengirimkan key lewat Header sesuai perintah cURL Anda
+			],
+			CURLOPT_POSTFIELDS => json_encode($data),
+			CURLOPT_TIMEOUT => 30,
+			CURLOPT_SSL_VERIFYPEER => false,
+			CURLOPT_SSL_VERIFYHOST => false
+		]);
 
-	    $response = curl_exec($ch);
+		$response = curl_exec($ch);
+		$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-	    if (curl_errno($ch)) {
-	        return null;
-	    }
+		if (curl_errno($ch)) {
+			$error_msg = curl_error($ch);
+			curl_close($ch);
+			return "cURL Error: " . $error_msg;
+		}
 
-	    curl_close($ch);
+		curl_close($ch);
 
-	    $result = json_decode($response, true);
+		// Buka error dari Google jika HTTP Status bukan 200
+		if ($httpCode !== 200) {
+			$errResponse = json_decode($response, true);
+			if (isset($errResponse['error']['message'])) {
+				return "Google API Error (" . $httpCode . "): " . $errResponse['error']['message'];
+			}
+			return "Gagal dengan HTTP Code: " . $httpCode . ". Respon mentah: " . $response;
+		}
 
-	    if (isset($result['error'])) {
-	        return null;
-	    }
+		$result = json_decode($response, true);
 
-	    return $result['candidates'][0]['content']['parts'][0]['text'] ?? null;
+		return $result['candidates'][0]['content']['parts'][0]['text'] ?? "Format respon tidak sesuai.";
 	}
 	private function correctMenuName($input)
 	{

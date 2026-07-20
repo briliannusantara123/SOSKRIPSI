@@ -1,2 +1,1 @@
-ngrok http 80
-
+ngrok.exe http 80

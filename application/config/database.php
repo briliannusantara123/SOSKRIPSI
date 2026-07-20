@@ -94,7 +94,7 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
-$db['uat'] = array(
+$db['dev'] = array(
 	'dsn'	=> '',
 	'hostname' => 'dev.3guru.com',
 	'username' => 'Service',

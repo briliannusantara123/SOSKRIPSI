@@ -1019,11 +1019,11 @@ function __construct()
 		            ->where('external_id', $externalId)
 		            ->get('sh_payment_va')
 		            ->row();
-		        // $this->db_dev = $this->load->database('dev', TRUE);
-		        // $existing_dev = $this->db_dev
-		        //     ->where('external_id', $externalId)
-		        //     ->get('sh_payment_va')
-		        //     ->row();
+		        $this->db_dev = $this->load->database('dev', TRUE);
+		        $existing_dev = $this->db_dev
+		            ->where('external_id', $externalId)
+		            ->get('sh_payment_va')
+		            ->row();
 		        if ($existing) {
 		            // 🔄 UPDATE
 		            $this->db
@@ -3684,51 +3684,70 @@ function __construct()
 
 
 	public function simulate_va_payment($external_id, $amount)
-    {
-        $url = "https://api.xendit.co/callback_virtual_accounts/external_id={$external_id}/simulate_payment";
+	{
+		$url = "https://api.xendit.co/callback_virtual_accounts/external_id={$external_id}/simulate_payment";
 
-        $payload = [
-            'amount' => (int) $amount
-        ];
+		$payload = [
+			'amount' => (int) $amount
+		];
 
-        $ch = curl_init();
+		$ch = curl_init();
 
-        curl_setopt_array($ch, [
-            CURLOPT_URL            => $url,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_POST           => true,
-            CURLOPT_POSTFIELDS     => json_encode($payload),
-            CURLOPT_HTTPHEADER     => [
-                'Content-Type: application/json'
-            ],
-            // BASIC AUTH → secret_key:
-            CURLOPT_USERPWD        => $this->xendit_key . ':',
-            CURLOPT_SSL_VERIFYPEER => false,
-    		CURLOPT_SSL_VERIFYHOST => false
-        ]);
+		curl_setopt_array($ch, [
+			CURLOPT_URL            => $url,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_POST           => true,
+			CURLOPT_POSTFIELDS     => json_encode($payload),
+			CURLOPT_HTTPHEADER     => [
+				'Content-Type: application/json'
+			],
+			CURLOPT_USERPWD        => $this->xendit_key . ':',
+			CURLOPT_SSL_VERIFYPEER => false,
+			CURLOPT_SSL_VERIFYHOST => false
+		]);
 
-        $response = curl_exec($ch);
+		$response = curl_exec($ch);
 
-		$data = json_decode($response, true); 
-        $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		if (curl_errno($ch)) {
 
-        if (curl_errno($ch)) {
-            $error = curl_error($ch);
-            curl_close($ch);
-            show_error($error);
-        }
+			$this->session->set_flashdata('error', 'Unable to process the virtual account payment simulation. Please try again.');
 
-        curl_close($ch);
+			curl_close($ch);
 
-        // if ($data['status'] == 'COMPLETED') {
-        // 	$this->db->where('external_id', $external_id)
-	       //       ->update('sh_payment_va', [
-	       //           'status'       => 'PAID',
-	       //           'paid_amount'  => $amount,
-	       //           'paid_at'      => date('Y-m-d H:i:s')
-	       //       ]);
-        // }
-    }
+			redirect('payment');
+		}
+
+		$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+		curl_close($ch);
+
+		$data = json_decode($response, true);
+
+		if ($httpcode == 200 && isset($data['status']) && $data['status'] == 'COMPLETED') {
+
+			$this->db->where('external_id', $external_id)
+					->update('sh_payment_va', [
+						'status'      => 'PAID',
+						'paid_amount' => $amount,
+						'paid_at'     => date('Y-m-d H:i:s')
+					]);
+
+			$this->session->set_flashdata(
+				'success',
+				'Virtual Account payment has been successfully completed. The transaction has been verified and your order is now being processed.'
+			);
+
+		} else {
+
+			$message = !empty($data['message'])
+				? $data['message']
+				: 'The Virtual Account payment could not be processed. Please try again later.';
+
+			$this->session->set_flashdata('error', $message);
+		}
+
+		redirect('index.php/payment');
+	}
 	public function get_va_status($external_id)
 	{
 	    $url = "https://api.xendit.co/callback_virtual_accounts?external_id={$external_id}";
