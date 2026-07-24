@@ -767,10 +767,10 @@ function __construct()
 	public function order_post($table,$payment_type, $cek = NULL, $sub = NULL)
 	{
 		$session = $this->cekstatus_model->cek();
-		  	if($session['status'] == 'Billing'){
-		  			$nomeja = $this->session->userdata('nomeja');
-		  			redirect('index.php/login/logoutback/'.$nomeja);
-		  	}
+		  	// if($session['status'] == 'Billing'){
+		  	// 		$nomeja = $this->session->userdata('nomeja');
+		  	// 		redirect('index.php/login/logoutback/'.$nomeja);
+		  	// }
 	    $table = $this->session->userdata('nomeja');
 	    $qty = $this->input->post('qty');
 	    $qtyaddon = $this->input->post('qtyaddon');
@@ -1100,10 +1100,10 @@ function __construct()
 	public function bayar()
 	{
 		$session = $this->cekstatus_model->cek();
-		  	if($session['status'] == 'Billing'){
-		  			$nomeja = $this->session->userdata('nomeja');
-		  			redirect('index.php/login/logoutback/'.$nomeja);
-		  	}
+		  	// if($session['status'] == 'Billing'){
+		  	// 		$nomeja = $this->session->userdata('nomeja');
+		  	// 		redirect('index.php/login/logoutback/'.$nomeja);
+		  	// }
 	    $amount      = $this->input->post('totalbayar');
 	    $id_customer = $this->session->userdata('id');
 	    $uoi         = $this->session->userdata('user_order_id');

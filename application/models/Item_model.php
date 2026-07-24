@@ -1811,11 +1811,10 @@
 
 		public function order_bill_line($cabang,$notrans) 
 		{
-			$query = "select b.order_no,a.id,a.item_code,COALESCE(im.image_path, i.image_path) as image_path,sum(a.qty) as qty,a.disc,a.is_paid, a.description, case when a.unit_price > 0 then a.unit_price else 'FREE' end as unit_price, case when (sum(a.qty*a.unit_price) - sum(a.qty*a.unit_price * (a.disc/100))) > 0 then (sum(a.qty*a.unit_price) - sum(a.qty*a.unit_price * (a.disc/100))) else 'FREE' end as sub_total, a.extra_notes 
+			$query = "select i.category,b.order_no,a.id,a.item_code,COALESCE(i.image_path, i.image_path) as image_path,sum(a.qty) as qty,a.disc,a.is_paid, a.description, case when a.unit_price > 0 then a.unit_price else 'FREE' end as unit_price, case when (sum(a.qty*a.unit_price) - sum(a.qty*a.unit_price * (a.disc/100))) > 0 then (sum(a.qty*a.unit_price) - sum(a.qty*a.unit_price * (a.disc/100))) else 'FREE' end as sub_total, a.extra_notes 
 							  from sh_t_transaction_details a 
 							  inner join sh_t_transactions b on a.id_trans = b.id
-							  inner join sh_m_item i on a.item_code = i.no  
-							  inner join sh_m_item_image im on a.item_code = im.item_code  
+							  inner join sh_m_item i on a.item_code = i.no    
 							  inner join sh_m_customer c on c.id = b.id_customer where a.is_cancel = 0 and b.cabang = ".$cabang." and a.parent_id_package = 0 and b.id= ".$notrans." group by a.item_code,a.id_trans order by a.id asc";
 			return $this->db->query($query)->result();
 		}
