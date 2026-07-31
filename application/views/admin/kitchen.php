@@ -176,8 +176,14 @@
                             html += '        <div class="text-muted small mt-2">Catatan: ' + item.extra_notes + '</div>';
                         }
                         html += '      </div>';
+                        var isCompleted = (statusLabel || '').toString().toLowerCase() === 'completed' || (statusLabel || '').toString().toLowerCase() === 'done';
+
                         html += '      <div class="text-right">';
-                        html += '        <button type="button" class="btn btn-sm btn-outline-primary btn-update-item-status" data-item-id="' + item.id + '" data-current-status="' + statusLabel + '">Update</button>';
+                        if (!isCompleted) {
+                            html += '        <button type="button" class="btn btn-sm btn-outline-primary btn-update-item-status" data-item-id="' + item.id + '" data-current-status="' + statusLabel + '">Update</button>';
+                        } else {
+                            html += '        <span class="text-success small fw-bold">Completed</span>';
+                        }
                         html += '      </div>';
                         html += '    </div>';
                         html += '  </div>';
@@ -188,12 +194,17 @@
                     container.querySelectorAll('.btn-update-item-status').forEach(function(btn) {
                         btn.addEventListener('click', function() {
                             var itemId = this.getAttribute('data-item-id');
-                            var currentStatus = this.getAttribute('data-current-status');
+                            var currentStatus = this.getAttribute('data-current-status') || '';
+                            var normalizedStatus = currentStatus.toLowerCase();
                             var nextStatus = 'In Progress';
-                            if (currentStatus.toLowerCase() === 'awaiting') nextStatus = 'In Progress';
-                            else if (currentStatus.toLowerCase() === 'in progress') nextStatus = 'Deliver';
-                            else if (currentStatus.toLowerCase() === 'deliver') nextStatus = 'Completed';
-                            else if (currentStatus.toLowerCase() === 'completed') {
+
+                            if (normalizedStatus === 'awaiting') {
+                                nextStatus = 'In Progress';
+                            } else if (normalizedStatus === 'in progress' || normalizedStatus === 'proses') {
+                                nextStatus = 'Deliver';
+                            } else if (normalizedStatus === 'deliver' || normalizedStatus === 'delivered') {
+                                nextStatus = 'Completed';
+                            } else if (normalizedStatus === 'completed' || normalizedStatus === 'done') {
                                 Swal.fire({ icon: 'info', title: 'Selesai', text: 'Item sudah selesai.' });
                                 return;
                             }

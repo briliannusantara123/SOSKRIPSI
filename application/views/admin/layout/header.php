@@ -130,6 +130,17 @@
                             <span class="pcoded-mtext">Orders Item</span>
                         </a>
                     </li>
+					<li class="nav-item pcoded-menu-caption">
+                        <label style="color: #198754">Monitoring</label>
+                    </li>
+                    <li class="nav-item <?= $menu_is_active('Admin', 'chatbot') ?>">
+						<a href="<?= base_url('index.php/Admin/chatbot') ?>" class="nav-link">
+							<span class="pcoded-micon">
+								<i class="feather icon-message-circle"></i>
+							</span>
+							<span class="pcoded-mtext">Chatbot</span>
+						</a>
+					</li>
 
                     <?php if ($this->session->userdata('role') == 'waitress'): ?>
                         <li class="nav-item">

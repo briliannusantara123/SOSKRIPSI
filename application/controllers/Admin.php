@@ -68,6 +68,34 @@ function __construct()
 		
 		$this->load->view('admin/index',$data);
 	}
+	public function chatbot()
+	{
+		$date_from = $this->input->get('date_from');
+		$date_to   = $this->input->get('date_to');
+
+		// Default hari ini
+		if (empty($date_from)) {
+			$date_from = date('Y-m-d');
+		}
+
+		if (empty($date_to)) {
+			$date_to = date('Y-m-d');
+		}
+
+		$data['date_from'] = $date_from;
+		$data['date_to']   = $date_to;
+		$data['title'] = 'Chatbot Monitoring';	
+
+		$data['chatbot'] = $this->Admin_model->getChatbot(
+			$date_from,
+			$date_to
+		);
+		$data['cn'] = $this->Admin_model->getColorCN();
+		$data['ch'] = $this->Admin_model->getColorHD();
+		$data['cb'] = $this->Admin_model->getColorBTN();
+    	$data['logo'] = $this->Admin_model->getLogo();
+		$this->load->view('admin/chatbot', $data);
+	}
 	public function dashboard($offset = 0)
 	{
 	    // =========================
@@ -3450,9 +3478,11 @@ public function UpdateStock()
 				$update['runner_by'] = $this->session->userdata('usernameadmin');
 				break;
 			case 'deliver':
+			case 'delivered':
 				$update['runner_by'] = $this->session->userdata('usernameadmin');
 				break;
 			case 'completed':
+			case 'done':
 				$update['end_time_order'] = date('Y-m-d H:i:s');
 				break;
 			default:

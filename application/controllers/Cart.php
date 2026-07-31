@@ -23,22 +23,22 @@ function __construct()
 			$this->load->library('encryption');
 			$session = $this->cekstatus_model->cek();
 
-	  		if($session['status'] == 'Cleaning'){
-	  			$nomeja = $this->session->userdata('nomeja');
-	  			redirect('index.php/login/logout/'.$nomeja.'/cleaning');
-	  		}
+	  		// if($session['status'] == 'Cleaning'){
+	  		// 	$nomeja = $this->session->userdata('nomeja');
+	  		// 	redirect('index.php/login/logout/'.$nomeja.'/cleaning');
+	  		// }
 	  		// if($session['id_table'] != $this->session->userdata('nomeja')){
 	  		// 	$nomeja = $this->session->userdata('nomeja');
 	  		// 	redirect('index.php/login/log_out/'.$nomeja);
 	  		// }
-	  		if($session['status'] == 'Payment'){
-	  			$nomeja = $this->session->userdata('nomeja');
-	  			redirect('index.php/login/logoutPayment/'.$nomeja);
-	  		}
-	  		if($session['status'] == 'Available'){
-		  			$nomeja = $this->session->userdata('nomeja');
-		  			redirect('index.php/login/log_out/'.$nomeja);
-		  	}
+	  		// if($session['status'] == 'Payment'){
+	  		// 	$nomeja = $this->session->userdata('nomeja');
+	  		// 	redirect('index.php/login/logoutPayment/'.$nomeja);
+	  		// }
+	  		// if($session['status'] == 'Available'){
+		  	// 		$nomeja = $this->session->userdata('nomeja');
+		  	// 		redirect('index.php/login/log_out/'.$nomeja);
+		  	// }
 
 		  	
 			

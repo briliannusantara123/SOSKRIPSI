@@ -2849,7 +2849,6 @@ class Ordermakanan extends CI_Controller {
 	    }
 	}
 	
-	// AIzaSyA38CxDrGgPBFdntU_n43p7eGVSQvFAe1I
 	
 public function ai_chatOLD()
 {
@@ -3381,7 +3380,7 @@ public function get_cart_summary()
 	               SEARCH
 	            ========================= */
 	            case 'search':
-	            case 'info':
+	            
 
 	                $keyword = $this->extractKeyword($message);
 					
@@ -3435,43 +3434,49 @@ public function get_cart_summary()
 	            ========================= */
 	            if (empty($menus)) {
 
-	                $responseText =
-	                    "Maaf ya, aku belum nemu menu yang kamu maksud, coba kata lain ya";
+					$prompt = "
+						Kamu adalah chatbot restoran Hachi Garden.
 
-	                /* =========================
-	                   INSERT CHAT HISTORY
-	                ========================= */
-	                $this->db->insert('sh_chatbot', [
-	                	'id_customer'		=> $this->session->userdata('id'),
+						User bertanya:
+						{$message}
 
-	                    'table_id'          => $this->input->post('table_id'),
+						Database restoran tidak menemukan menu yang sesuai.
 
-	                    'customer_message'  => $this->removeEmoji($message),
+						Tugas:
+						- Jawab dengan ramah dalam bahasa Indonesia.
+						- Jika pertanyaan bukan tentang menu, jawab secara natural.
+						- Jika pertanyaan tentang menu tetapi tidak ditemukan, minta user menjelaskan nama menu yang dicari.
+						- Jangan mengarang menu yang tidak ada.
+						- Jawab maksimal 2 kalimat.
+					";
 
-	                    'chatbot_response'  => $this->removeEmoji($responseText),
+					$responseText = trim($this->askGemini($prompt));
 
-	                    'intent'            => $intent,
+					if (empty($responseText)) {
+						$responseText = "Maaf, saya belum menemukan menu yang dimaksud. Bisa jelaskan lebih spesifik?";
+					}
 
-	                    'detected_category' => $category,
+					$this->db->insert('sh_chatbot', [
+						
+						'id_customer'       => $this->session->userdata('id'),
+						'table_id'          => $this->input->post('table_id'),
+						'customer_message'  => $this->removeEmoji($message),
+						'chatbot_response'  => $this->removeEmoji($responseText),
+						'intent'            => $intent,
+						'detected_category' => $category,
+						'qty'               => $qty,
+						'response_type'     => 'ai'
 
-	                    'qty'               => $qty,
+					]);
 
-	                    'response_type'     => 'chatbot'
+					echo json_encode([
+						'status' => true,
+						'reply'  => "🤖 " . $responseText,
+						'menus'  => []
+					], JSON_UNESCAPED_UNICODE);
 
-	                ]);
-
-	                echo json_encode([
-
-	                    'status' => true,
-
-	                    'reply'  => "🤖 " . $responseText,
-
-	                    'menus'  => []
-
-	                ], JSON_UNESCAPED_UNICODE);
-
-	                exit;
-	            }
+					exit;
+				}
 
 	            $menuNames = array_column($menus, 'name');
 
@@ -3486,7 +3491,7 @@ public function get_cart_summary()
 	            $ai = $this->askGemini(
 	                "Kamu adalah asisten restoran ramah. Jawab singkat natural. User: $message"
 	            );
-
+				
 	            $responseText =
 	                trim($ai) ?: "Aku siap bantu kamu";
 
@@ -3501,7 +3506,7 @@ public function get_cart_summary()
 	           INSERT CHAT HISTORY
 	        ========================= */
 	        $this->db->insert('sh_chatbot', [
-
+				'id_customer'       => $this->session->userdata('id'),
 	            'table_id'          => $this->input->post('table_id'),
 
 	            'customer_message'  => $this->removeEmoji($message),
@@ -3624,54 +3629,89 @@ public function get_cart_summary()
 	}
 		private function extractKeyword($message)
 	{
-	    $stopwords = ['ada','kah','dong','nih','ga','gak','punya','menu','yang'];
+		$message = strtolower(trim($message));
 
-	    // 🔥 hapus simbol
-	    $message = preg_replace('/[^a-zA-Z0-9\s]/', '', $message);
+		$stopwords = [
+			'ada','kah','dong','nih','ga','gak',
+			'punya','menu','yang','tolong',
+			'carikan','cari','mau','ingin'
+		];
 
-	    $words = explode(' ', $message);
-	    $filtered = array_diff($words, $stopwords);
+		// Hapus karakter selain huruf, angka dan spasi
+		$message = preg_replace('/[^a-z0-9\s]/i', ' ', $message);
 
-	    return trim(implode(' ', $filtered));
+		// Hilangkan spasi berlebih
+		$message = preg_replace('/\s+/', ' ', $message);
+
+		$words = explode(' ', $message);
+
+		$filtered = [];
+
+		foreach ($words as $word) {
+
+			$word = trim($word);
+
+			if ($word == '') {
+				continue;
+			}
+
+			if (!in_array($word, $stopwords)) {
+				$filtered[] = $word;
+			}
+		}
+
+		return implode(' ', $filtered);
 	}
 		private function detectIntent($message)
-	{
-	    if (strpos($message, 'beli') !== false) return 'order';
+		{
+			$message = strtolower(trim($message));
 
-	    if (preg_match('/diet|sehat|low calorie/', $message)) return 'diet';
+			if ($message === '') {
+				return 'general';
+			}
 
-	    if (preg_match('/murah|hemat|budget|cheap/', $message)) return 'cheap';
+			if (preg_match('/\b(beli|pesan|order)\b/i', $message))
+				return 'order';
 
-	    if (preg_match('/minum|drink|coffee|kopi/', $message)) return 'drink';
+			if (preg_match('/\b(diet|sehat|low calorie)\b/i', $message))
+				return 'diet';
 
-	    if (preg_match('/makan|makanan|food/', $message)) return 'food';
+			if (preg_match('/\b(murah|hemat|budget|cheap)\b/i', $message))
+				return 'cheap';
 
-	    if (preg_match('/rekomendasi|recommend|best|favorit/', $message)) return 'recommend';
+			if (preg_match('/\b(minum|minuman|drink|coffee|kopi|teh|jus)\b/i', $message))
+				return 'drink';
 
-	    if (preg_match('/pedas|halal|kalori|ingredient/', $message)) return 'info';
+			if (preg_match('/\b(makan|makanan|food)\b/i', $message))
+				return 'food';
 
-	    if (preg_match('/ada|punya|available/', $message)) return 'search';
+			if (preg_match('/\b(rekomendasi|recommend|best|favorit)\b/i', $message))
+				return 'recommend';
 
-	    // 🔥 FIX UTAMA: fallback jadi search
-	    if (str_word_count($message) <= 3) {
-	        return 'search';
-	    }
+			if (preg_match('/\b(pedas|halal|kalori|ingredient)\b/i', $message))
+				return 'info';
 
-	    return 'general';
-	}
+			if (preg_match('/\b(ada|punya|available)\b/i', $message))
+				return 'search';
+
+			if (str_word_count($message) <= 3)
+				return 'search';
+
+			return 'general';
+		}
 	private function askGemini($message)
 	{
-		// Gunakan model gemini-1.5-flash sesuai URL cURL Anda yang valid
-		$url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
+		$apiKey = "";
 
-		// PENTING: Jika token AQ.Ab8RN... ini expired, ganti dengan API Key resmi yang diawali "AIzaSy..." dari Google AI Studio
-		$apiKey = "Ab8RN6KtMIG81ysF1sjbaHvNT0pR4nOwBBWFuPv_v8qGNmWwQA";
+		$url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent";
 
-		$data = [
+		$payload = [
 			"contents" => [
 				[
 					"parts" => [
-						["text" => (string)$message]
+						[
+							"text" => $message
+						]
 					]
 				]
 			]
@@ -3684,95 +3724,148 @@ public function get_cart_summary()
 			CURLOPT_POST => true,
 			CURLOPT_HTTPHEADER => [
 				"Content-Type: application/json",
-				"X-goog-api-key: " . $apiKey // PERBAIKAN: Mengirimkan key lewat Header sesuai perintah cURL Anda
+				"X-Goog-Api-Key: ".$apiKey
 			],
-			CURLOPT_POSTFIELDS => json_encode($data),
-			CURLOPT_TIMEOUT => 30,
-			CURLOPT_SSL_VERIFYPEER => false,
-			CURLOPT_SSL_VERIFYHOST => false
+			CURLOPT_POSTFIELDS => json_encode($payload, JSON_UNESCAPED_UNICODE),
+			CURLOPT_TIMEOUT => 60
 		]);
 
 		$response = curl_exec($ch);
-		$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
 		if (curl_errno($ch)) {
-			$error_msg = curl_error($ch);
+			$err = curl_error($ch);
 			curl_close($ch);
-			return "cURL Error: " . $error_msg;
+			return "cURL Error : ".$err;
 		}
+
+		$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
 		curl_close($ch);
 
-		// Buka error dari Google jika HTTP Status bukan 200
-		if ($httpCode !== 200) {
-			$errResponse = json_decode($response, true);
-			if (isset($errResponse['error']['message'])) {
-				return "Google API Error (" . $httpCode . "): " . $errResponse['error']['message'];
+		$json = json_decode($response, true);
+
+		if ($httpCode != 200) {
+
+			if (isset($json['error']['message'])) {
+				return "Google API Error ($httpCode): ".$json['error']['message'];
 			}
-			return "Gagal dengan HTTP Code: " . $httpCode . ". Respon mentah: " . $response;
+
+			return "HTTP ".$httpCode." : ".$response;
 		}
 
-		$result = json_decode($response, true);
+		if (isset($json['candidates'][0]['content']['parts'][0]['text'])) {
+			return trim($json['candidates'][0]['content']['parts'][0]['text']);
+		}
 
-		return $result['candidates'][0]['content']['parts'][0]['text'] ?? "Format respon tidak sesuai.";
+		if (isset($json['candidates'][0]['finishReason'])) {
+			return "Finish Reason : ".$json['candidates'][0]['finishReason'];
+		}
+
+		return "Unknown Response : ".$response;
 	}
 	private function correctMenuName($input)
 	{
-	    $this->db->select('description');
-	    $menus = $this->db->get('sh_m_item')->result();
+		$input = strtolower(trim($input));
 
-	    $bestMatch = null;
-	    $highestScore = 0;
+		if ($input == '') {
+			return '';
+		}
 
-	    foreach ($menus as $m) {
+		$query = $this->db
+			->select('description')
+			->where('is_active', 1)
+			->get('sh_m_item');
 
-	        $menuName = strtolower($m->description);
+		if (!$query) {
+			return $input;
+		}
 
-	        similar_text($input, $menuName, $percent);
-	        $distance = levenshtein($input, $menuName);
+		$menus = $query->result();
 
-	        $score = $percent - ($distance * 2);
+		if (empty($menus)) {
+			return $input;
+		}
 
-	        if ($score > $highestScore) {
-	            $highestScore = $score;
-	            $bestMatch = $m->description;
-	        }
-	    }
+		$bestMatch = $input;
+		$highestScore = 0;
 
-	    return ($highestScore > 40) ? $bestMatch : $input;
+		foreach ($menus as $menu) {
+
+			$menuName = strtolower(trim($menu->description));
+
+			similar_text($input, $menuName, $percent);
+
+			$distance = levenshtein($input, $menuName);
+
+			$score = $percent - ($distance * 2);
+
+			if ($score > $highestScore) {
+				$highestScore = $score;
+				$bestMatch = $menu->description;
+			}
+		}
+
+		return ($highestScore >= 45) ? $bestMatch : $input;
 	}
-	private function formatMenu($m, $logo)
+	private function formatMenu($m, $logo = null)
 	{
-	    if (empty($m->image_path)) {
-	        $image = base_url('assets/noimage.jpg');
-	    }
-	    elseif (strpos($m->image_path, 'data:image') !== false) {
-	        $image = $m->image_path;
-	    }
-	    elseif (strpos($m->image_path, 'assets') !== false) {
-	        $image = base_url($m->image_path);
-	    }
-	    else {
-	        $image = base_url($logo->image_path);
-	    }
+		$image = base_url('assets/noimage.jpg');
 
-	    return [
-	        'id'    => $m->id,
-	        'name'  => $m->description,
-	        'price' => $m->harga_weekend,
-	        'image' => $image
-	    ];
+		if (!empty($m->image_path)) {
+
+			if (strpos($m->image_path, 'data:image') === 0) {
+
+				$image = $m->image_path;
+
+			} elseif (strpos($m->image_path, 'assets') !== false) {
+
+				$image = base_url($m->image_path);
+
+			} else {
+
+				if (is_object($logo) && !empty($logo->image_path)) {
+
+					$image = base_url($logo->image_path);
+
+				}
+			}
+		}
+
+		return [
+			'id'    => isset($m->id) ? $m->id : 0,
+			'name'  => isset($m->description) ? $m->description : '',
+			'price' => isset($m->harga_weekend) ? (float)$m->harga_weekend : 0,
+			'image' => $image
+		];
 	}
 	private function insertToCart($item_id, $qty, $price)
 	{
-	    for ($i = 0; $i < $qty; $i++) {
-	        $_POST['item_id'] = $item_id;
-	        $_POST['qty']     = 1;
-	        $_POST['price']   = $price;
-	        $_POST['type']    = 'plus';
+		if (empty($item_id) || $qty <= 0) {
+			return false;
+		}
 
-	        $this->cart_action(); // 🔥 reuse function kamu
-	    }
+		for ($i = 0; $i < $qty; $i++) {
+
+			$_POST['item_id'] = $item_id;
+			$_POST['qty']     = 1;
+			$_POST['price']   = $price;
+			$_POST['type']    = 'plus';
+
+			try {
+
+				$this->cart_action();
+
+			} catch (Throwable $e) {
+
+				log_message('error', 'Cart Error : '.$e->getMessage());
+
+				return false;
+
+			}
+
+		}
+
+		return true;
 	}
 
 }

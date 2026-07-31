@@ -21,10 +21,10 @@ class Review extends CI_Controller {
 			$this->load->helper('cookie');
 			$session = $this->cekstatus_model->cek();
 
-  		if($session['status'] == 'Cleaning'){
-  			$nomeja = $this->session->userdata('nomeja');
-  			redirect('index.php/login/logout/'.$nomeja.'/cleaning');
-			}
+  		// if($session['status'] == 'Cleaning'){
+  		// 	$nomeja = $this->session->userdata('nomeja');
+  		// 	redirect('index.php/login/logout/'.$nomeja.'/cleaning');
+		// 	}
 			}
 		}
 

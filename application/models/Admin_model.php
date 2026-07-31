@@ -777,4 +777,42 @@ class Admin_model extends CI_model {
 	                  ORDER BY d.id ASC";
 		return $this->db->query($query)->result();
 	}
+	public function getChatbot($date_from = '', $date_to = '')
+	{
+		$this->db->select("
+			sh_chatbot.*,
+			sh_m_customer.customer_name,
+			sh_m_customer.no_telp
+		");
+
+		$this->db->from('sh_chatbot');
+
+		// Join customer
+		$this->db->join(
+			'sh_m_customer',
+			'sh_m_customer.id = sh_chatbot.id_customer',
+			'left'
+		);
+
+
+		// Filter tanggal
+		if (empty($date_from) && empty($date_to)) {
+
+			$this->db->where('DATE(sh_chatbot.created_at)', date('Y-m-d'));
+
+		} else {
+
+			$this->db->where('DATE(sh_chatbot.created_at) >=', $date_from);
+			$this->db->where('DATE(sh_chatbot.created_at) <=', $date_to);
+
+		}
+
+
+		$this->db->group_by('sh_chatbot.id_customer');
+
+		$this->db->order_by('sh_chatbot.created_at', 'DESC');
+
+
+		return $this->db->get()->result();
+	}
 }

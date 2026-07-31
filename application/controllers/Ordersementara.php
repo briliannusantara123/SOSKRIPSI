@@ -18,18 +18,18 @@ function __construct()
 	  		// 	$nomeja = $this->session->userdata('nomeja');
 	  		// 	redirect('login/logout/'.$nomeja);
 	  		// }else 
-	  		if($session['status'] == 'Cleaning'){
-	  			$nomeja = $this->session->userdata('nomeja');
-	  			redirect('index.php/login/logout/'.$nomeja);
-	  		}
-	  		if($session['id_table'] != $this->session->userdata('nomeja')){
-	  			$nomeja = $this->session->userdata('nomeja');
-	  			redirect('index.php/login/log_out/'.$nomeja);
-	  		}
-	  		if($session['status'] == 'Available'){
-	  			$nomeja = $this->session->userdata('nomeja');
-	  			redirect('index.php/login/log_out/'.$nomeja);
-	  		}
+	  		// if($session['status'] == 'Cleaning'){
+	  		// 	$nomeja = $this->session->userdata('nomeja');
+	  		// 	redirect('index.php/login/logout/'.$nomeja);
+	  		// }
+	  		// if($session['id_table'] != $this->session->userdata('nomeja')){
+	  		// 	$nomeja = $this->session->userdata('nomeja');
+	  		// 	redirect('index.php/login/log_out/'.$nomeja);
+	  		// }
+	  		// if($session['status'] == 'Available'){
+	  		// 	$nomeja = $this->session->userdata('nomeja');
+	  		// 	redirect('index.php/login/log_out/'.$nomeja);
+	  		// }
 			
 		}
 	public function index()

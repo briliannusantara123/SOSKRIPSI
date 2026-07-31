@@ -19,10 +19,10 @@ public function __construct() {
 	  		// 	$nomeja = $this->session->userdata('nomeja');
 	  		// 	redirect('index.php/login/logout/'.$nomeja.'/cleaning');
 	  		// }
-	  		if($session['id_table'] != $this->session->userdata('nomeja')){
-	  			$nomeja = $this->session->userdata('nomeja');
-	  			redirect('index.php/login/log_out/'.$nomeja);
-	  		}
+	  		// if($session['id_table'] != $this->session->userdata('nomeja')){
+	  		// 	$nomeja = $this->session->userdata('nomeja');
+	  		// 	redirect('index.php/login/log_out/'.$nomeja);
+	  		// }
 	  		
 		}
 	public function index()
